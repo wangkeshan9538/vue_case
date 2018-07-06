@@ -5,8 +5,7 @@
 			active-text-color="#1EDDAA"
 			default-active="2" 
 			class="el-menu-vertical-demo" 
-			@open="handleOpen" 
-			@close="handleClose">
+			>
 			<el-submenu index="1">
 				<template slot="title">
 					<span>主数据管理</span>

@@ -9,7 +9,9 @@
 			<el-aside width="16.6%">
 				<side-menu></side-menu>
 			</el-aside>
-				<el-main></el-main>
+				<el-main>
+					<router-view/>
+				</el-main>
 			</el-row>
 		</el-container>
 		
