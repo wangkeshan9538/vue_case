@@ -1,23 +1,29 @@
 <template>
-    <el-container id="main_section">
+	<el-container id="main_section">
 
-      <el-header height="6%">
-        <head-section></head-section>
-      </el-header>
+		<el-header height="6%">
+			<head-section></head-section>
+		</el-header>
 
-      <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-main>Main</el-main>
-      </el-container>
-
-    </el-container>
+		<el-container>
+			<el-aside width="16.6%">
+				<side-menu></side-menu>
+			</el-aside>
+				<el-main>
+					<router-view/>
+				</el-main>
+			</el-row>
+		</el-container>
+		
+	</el-container>
 </template>
 
 <script>
   import HeadSection from "./headSection";
-
+  import SideMenu from './SideMenu';
+	
   export default {
-    components: {HeadSection},
+    components: {HeadSection ,SideMenu},
     name: 'mainSection',
     /*data () {
       return {
@@ -39,5 +45,13 @@
   .el-header{
     padding:0px;
     min-height:60px;
+  }
+  
+  .el-main{
+  	padding:0px
+  }
+  
+  .el-aside{
+  	background-color: #3F3E44;
   }
 </style>
