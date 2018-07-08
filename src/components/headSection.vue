@@ -1,10 +1,10 @@
 <template>
   <div id="head_section">
   <el-row>
-    <el-col id="logo" :span="3">
+    <el-col id="logo" :span="4">
       <img src="@/assets/logo.png">
     </el-col>
-    <el-col id="userInfo" :span="3" offset="18">
+    <el-col id="userInfo" :span="3" offset="17">
       <div>
       用户信息
       </div>
@@ -33,7 +33,7 @@
    height: 100%;
  }
   #logo{
-    background: black;
+    background: #3F3E44;
     text-align: center;
   }
 

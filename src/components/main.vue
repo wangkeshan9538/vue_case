@@ -6,7 +6,7 @@
 		</el-header>
 
 		<el-container>
-			<el-aside width="16.6%">
+			<el-aside width="16.6666%"> <!-- 如果想要logo和侧边栏宽度一样 ，有没有更好的办法-->
 				<side-menu></side-menu>
 			</el-aside>
 				<el-main>
@@ -14,14 +14,14 @@
 				</el-main>
 			</el-row>
 		</el-container>
-		
+
 	</el-container>
 </template>
 
 <script>
   import HeadSection from "./headSection";
   import SideMenu from './SideMenu';
-	
+
   export default {
     components: {HeadSection ,SideMenu},
     name: 'mainSection',
@@ -46,11 +46,11 @@
     padding:0px;
     min-height:60px;
   }
-  
+
   .el-main{
   	padding:0px
   }
-  
+
   .el-aside{
   	background-color: #3F3E44;
   }
