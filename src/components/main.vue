@@ -46,11 +46,6 @@
     padding:0px;
     min-height:60px;
   }
-
-  .el-main{
-  	padding:0px
-  }
-
   .el-aside{
   	background-color: #3F3E44;
   }

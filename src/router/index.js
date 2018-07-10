@@ -1,24 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import main from '@/components/main'
-import DataManage from '@/components/dataManage/DataManage'
+import {router_meta} from '@/router/config'
 
 Vue.use(Router)
 
+
+console.log(router_meta)
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'main',
       component: main,
-      children:[
-      	{
-      		path:'/data',
-      		name:'data',
-      		component:DataManage
-      	}
-      ]
+      children:router_meta
     },
-    
   ]
 })

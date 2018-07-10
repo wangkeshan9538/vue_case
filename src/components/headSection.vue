@@ -4,7 +4,7 @@
     <el-col id="logo" :span="4">
       <img src="@/assets/logo.png">
     </el-col>
-    <el-col id="userInfo" :span="3" offset="17">
+    <el-col id="userInfo" :span="3" :offset='17'>
       <div>
       用户信息
       </div>
