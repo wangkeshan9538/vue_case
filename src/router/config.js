@@ -1,10 +1,16 @@
 import DataManage from '@/components/dataManage/DataManage'
+import TableData  from '@/components/common/TableUse'
 
 export const router_info={ //为了方便外界通过键值的方式 使用路由信息，
 	'DataManage':{
 		path:'/data',
       	name:'data',
       	component:DataManage
+	},
+	'Table':{
+		path:'table',
+		name:'table',
+		component:TableData
 	}
 }
 

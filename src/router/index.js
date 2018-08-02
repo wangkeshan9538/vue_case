@@ -6,7 +6,6 @@ import {router_meta} from '@/router/config'
 Vue.use(Router)
 
 
-console.log(router_meta)
 export default new Router({
   routes: [
     {

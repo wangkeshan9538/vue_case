@@ -59,8 +59,9 @@
 		<el-table
 	      :data="tableData"
 	      style="width: 100%"
-	      highlight-current-row="true"
+	      highlight-current-row
 	      stripe
+	      height="200px"
 	      >
 	      <el-table-column
 	        prop="date"
@@ -91,7 +92,7 @@
 	    <div class="page_wrap">
 	     <el-pagination
 	      background
-	      :current-page="currentPage4"
+	      
 	      :page-sizes="[100, 200, 300, 400]"
 	      :page-size="100"
 	      layout="total, sizes, prev, pager, next, jumper"
@@ -101,6 +102,56 @@
 
 	</section>
 	
+	<header class="subTableHeader">
+		<p>下表格</p>
+		<div>下载</div>
+	</header>
+	
+	
+	<section class="subTable">
+		<el-table
+	      :data="tableData"
+	      style="width: 100%"
+	      highlight-current-row
+	      stripe
+	      height="180px"
+	      >
+	      <el-table-column
+	        prop="date"
+	        label="日期"
+	        align="center"
+	        >
+	      </el-table-column>
+	      <el-table-column
+	        prop="name"
+	        label="姓名"
+	        align="center"
+	        >
+	      </el-table-column>
+	      <el-table-column
+	        prop="address"
+	        label="地址"
+	        align="center"
+	        >
+	      </el-table-column>
+	      <el-table-column
+	        prop="address"
+	        label="地址"
+	        align="center"
+	        >
+	      </el-table-column>
+	    </el-table>
+	    
+	    <div class="page_wrap">
+	     <el-pagination
+	      background
+	      
+	      :page-sizes="[100, 200, 300, 400]"
+	      :page-size="100"
+	      layout="total, sizes, prev, pager, next, jumper"
+	      :total="400"></el-pagination>
+	    </div>  
+	</section>
 	</div>
 </template>
 
@@ -123,7 +174,7 @@
 .table_title{
       color: #444444;
       line-height: 16px;
-      margin: 20px 6px;
+      margin: 10px 6px;
 }
 
 .menu_line{
@@ -183,5 +234,10 @@
 .page_wrap{
 	text-align: right;
 	margin-top: 5px;
+}
+
+.subTableHeader{
+	display: flex;
+	justify-content:space-between;
 }
 </style>
