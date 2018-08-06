@@ -16,7 +16,6 @@
 					<el-menu-item index="1-3">选项3</el-menu-item>
 					<el-menu-item index="1-4">选项1</el-menu-item>
 				</el-submenu>
-			</el-submenu>
 			<el-submenu index="2">
 				<template slot="title">
 					<span>主数据管理</span>
@@ -26,7 +25,6 @@
 					<el-menu-item index="2-3">选项3</el-menu-item>
 					<el-menu-item index="2-4">选项1</el-menu-item>
 				</el-submenu>
-			</el-submenu>
 	</el-menu>
  </template>
 

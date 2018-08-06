@@ -1,15 +1,15 @@
 <template>
-
+  <div>
 
     <Table :columnsParam="Columns" :urlParam="url"></Table>
 
-
+  </div>
 </template>
 
 <script>
-  import Table from './Table'
-  import Columns from './Columns.js'
-
+  import Table from '../common/Table'
+  import Columns from '../common/Columns.js'
+  import {UserGetter} from '../../dataQuery/TableUserQuery'
   export default {
     name: "table-use",
     components: {
@@ -18,7 +18,7 @@
     data() {
       return {
         Columns,
-        url:urlfuc,
+        url:UserGetter,
       }
     },
     created() {
@@ -27,14 +27,6 @@
   }
 
 
-  function urlfuc(){
-    let res='这是response';
-    return{
-      then(func){
-        func(res);
-      }
-    }
-  }
 </script>
 
 <style scoped>

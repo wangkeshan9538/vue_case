@@ -1,5 +1,5 @@
 import DataManage from '@/components/dataManage/DataManage'
-import TableData  from '@/components/common/TableUse'
+import TableData  from '@/components/dataManage/TableUse'
 
 export const router_info={ //为了方便外界通过键值的方式 使用路由信息，
 	'DataManage':{

@@ -40,7 +40,7 @@
 
   export default {
     props: {//是单向数据流 ，存的是一个数据对象的指针 ，所以父级改动会同步到子组件，而子组件的改动不会同步到父级，所以如果希望不变 ，需要赋给data,
-      urlParam: Function,
+      urlParam: Object,
       //params:Array,
       columnsParam: Array,
     },
@@ -64,12 +64,9 @@
       refreshTable() {
         let self=this;
         console.log('刷新')
-        this.url().then(function (res) {
-          console.log(res)
-          self.datas=tableData.data;
-          console.log(self.datas)
-
-          self.page=tableData.page;
+        this.url.then(function (res) {
+          self.datas=res.data.data;
+          self.page=res.data.page;
         });
       }
 
