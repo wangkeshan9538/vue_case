@@ -36,20 +36,19 @@
 
 <script>
 
-  import {tableData} from './data'
 
   export default {
     props: {//是单向数据流 ，存的是一个数据对象的指针 ，所以父级改动会同步到子组件，而子组件的改动不会同步到父级，所以如果希望不变 ，需要赋给data,
-      urlParam: Object,
-      //params:Array,
+      dataQueryFunc: Function,
       columnsParam: Array,
+      params:Object
     },
     data() {
       return {
         datas: [],//datas,
-        url:this.urlParam,
+        queryFunc: this.dataQueryFunc,
         page: {},
-        columns:this.columnsParam
+        columns: this.columnsParam
       }
     },
     created() {
@@ -62,11 +61,11 @@
       },
 
       refreshTable() {
-        let self=this;
+        let self = this;
         console.log('刷新')
-        this.url.then(function (res) {
-          self.datas=res.data.data;
-          self.page=res.data.page;
+        this.queryFunc(params).then(function (res) {
+          self.datas = res.data.data;
+          self.page = res.data.page;
         });
       }
 
