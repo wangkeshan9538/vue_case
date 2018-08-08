@@ -63,7 +63,7 @@
       refreshTable() {
         let self = this;
         console.log('刷新')
-        this.queryFunc(params).then(function (res) {
+        this.queryFunc(this.params).then(function (res) {
           self.datas = res.data.data;
           self.page = res.data.page;
         });

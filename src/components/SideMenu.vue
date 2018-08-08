@@ -11,9 +11,9 @@
 				<template slot="title">
 					<span>主数据管理</span>
 				</template>
-					<el-menu-item :index="router_info.DataManage.name">选项1</el-menu-item> <!--为了达到路由的效果 ，这里放 name 和path都可以  -->
-					<el-menu-item :index="router_info.Table.name">选项2</el-menu-item>
-					<el-menu-item index="1-3">选项3</el-menu-item>
+					<el-menu-item :index="router_info.DataManage.name">看起来不错其实代码写的很烂的页面</el-menu-item> <!--为了达到路由的效果 ，这里放 name 和path都可以  -->
+					<el-menu-item :index="router_info.Table.name">将Table抽出来并加上Rap</el-menu-item>
+					<el-menu-item :index="router_info.Schedule.name">定时任务</el-menu-item>
 					<el-menu-item index="1-4">选项1</el-menu-item>
 				</el-submenu>
 			<el-submenu index="2">
