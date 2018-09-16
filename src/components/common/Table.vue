@@ -7,15 +7,33 @@
       stripe
       height="90%"
     >
-
-      <el-table-column
+      <template
         v-for="(column,index) in columns"
+      >
+        <el-table-column
+          v-if="column.isTemplate"
+          :prop="column.prop"
+          :label="column.label"
+          :key="index"
+          align="center"
+        >
+          <template slot-scope="scope">
+          <components :is="column.template" :item="scope" :aaa="111"></components>
+          </template>
+        </el-table-column>
+
+        <el-table-column
+          v-else
         :prop="column.prop"
         :label="column.label"
         :key="index"
         align="center"
       >
       </el-table-column>
+
+
+      </template>
+
 
     </el-table>
 
