@@ -8,15 +8,22 @@ import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-
 import org.quartz.Trigger.TriggerState;
+import org.springframework.util.StringUtils;
+
+
+/**
+ *
+ * 描述：
+ *    作为定时任务的控制中心类
+ *
+ */
+
 
 @Component
 @Slf4j
@@ -46,15 +53,18 @@ public class QuartzContext {
   }
 
 
-  public CronTrigger addTrigger(String jobId, String triggerID, String desc, String cron) throws SchedulerException {
+  public void addTrigger(String jobId, String triggerID, String desc, String cron) throws SchedulerException {
     CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
-    return TriggerBuilder
+
+    CronTrigger trigger = TriggerBuilder
       .newTrigger()
       .forJob(scheduler.getJobDetail(getJobKey(jobId)))
       .withIdentity(triggerID, GROUP_NAME)
       .withSchedule(scheduleBuilder)
       .withDescription(desc)
       .build();
+
+    scheduler.scheduleJob(trigger);
   }
 
   public void pauseJob(String jobId) throws SchedulerException {
@@ -65,20 +75,32 @@ public class QuartzContext {
     scheduler.pauseTrigger(getTriggerKey(triggerID));
   }
 
-  public CronTrigger updateTriggrtOfJob(String triggerID, String desc, String cron) throws SchedulerException {
+  public void updateTriggrtOfJob(String triggerID, String desc, String cron) throws SchedulerException {
     JobKey jd = scheduler.getTrigger(getTriggerKey(triggerID)).getJobKey();
 
+    CronTrigger oldTrigger = (CronTrigger) scheduler.getTrigger(getTriggerKey(triggerID));
+
+
     scheduler.unscheduleJob(getTriggerKey(triggerID));
+    CronScheduleBuilder scheduleBuilder;
 
-    CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+    if (StringUtils.isEmpty(cron)) {
+      scheduleBuilder = CronScheduleBuilder.cronSchedule(oldTrigger.getCronExpression());
+    } else {
+      scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+    }
 
-    return TriggerBuilder
+
+    Trigger t;
+    t = TriggerBuilder
       .newTrigger()
       .forJob(scheduler.getJobDetail(jd))
       .withIdentity(getTriggerKey(triggerID))
       .withSchedule(scheduleBuilder)
       .withDescription(desc)
       .build();
+
+    scheduler.scheduleJob(t);
   }
 
   public List<JobDetailVO> getAllJobsAndTrigger() throws SchedulerException {
@@ -131,6 +153,11 @@ public class QuartzContext {
 
   public void triggerJob(String job) throws SchedulerException {
     scheduler.triggerJob(getJobKey(job));
+  }
+
+
+  public void startTrigger(String triggerID) throws SchedulerException {
+    scheduler.scheduleJob(scheduler.getTrigger(getTriggerKey(triggerID)));
   }
 
 

@@ -11,12 +11,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 
-public class Task1 extends QuartzJobBean {
+public class Task1 extends BaseJob {
 
   @Override
-  protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
+  public void executeJob(JobExecutionContext context) {
 
-    System.out.printf("Task执行");
+    System.out.println("Task执行");
 
   }
+
 }
