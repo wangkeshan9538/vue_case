@@ -19,7 +19,6 @@ public abstract class BaseJob extends QuartzJobBean {
     Long beginTime=System.currentTimeMillis();
 
     log.info(context.getJobDetail().getDescription()+"开始执行，"+"触发器为："+context.getTrigger().getDescription());
-    log.error(context.getJobDetail().getDescription() ,"出现错误"   );
 
     try {
       executeJob(context);

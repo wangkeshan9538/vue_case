@@ -8,20 +8,20 @@ import org.quartz.*;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import org.quartz.Trigger.TriggerState;
 import org.springframework.util.StringUtils;
 
 
 /**
- *
  * 描述：
- *    作为定时任务的控制中心类
- *
+ * 作为定时任务的控制中心类
  */
 
 
@@ -84,13 +84,11 @@ public class QuartzContext {
     scheduler.unscheduleJob(getTriggerKey(triggerID));
     CronScheduleBuilder scheduleBuilder;
 
-    if (StringUtils.isEmpty(cron)) {
-      scheduleBuilder = CronScheduleBuilder.cronSchedule(oldTrigger.getCronExpression());
-    } else {
-      scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
-    }
-
-
+//    if (StringUtils.isEmpty(cron)) {
+//      scheduleBuilder = CronScheduleBuilder.cronSchedule(oldTrigger.getCronExpression());
+//    } else {
+    scheduleBuilder = CronScheduleBuilder.cronSchedule(cron);
+    //}
     Trigger t;
     t = TriggerBuilder
       .newTrigger()
@@ -157,16 +155,20 @@ public class QuartzContext {
 
 
   public void startTrigger(String triggerID) throws SchedulerException {
-    scheduler.scheduleJob(scheduler.getTrigger(getTriggerKey(triggerID)));
+    scheduler.resumeTrigger(getTriggerKey(triggerID));
   }
 
+  public void startJob(String jobId) throws SchedulerException {
+    scheduler.resumeJob(getJobKey(jobId));
+
+  }
 
   private JobKey getJobKey(String job) {
     return new JobKey(job, GROUP_NAME);
   }
 
   private TriggerKey getTriggerKey(String trigger) {
-    return getTriggerKey(trigger);
+    return new TriggerKey(trigger, GROUP_NAME);
   }
 
 

@@ -91,9 +91,9 @@ public class QuertzServerController {
   }
 
   @PostMapping("pauseTirgger")
-  public CommonReturnMsg pauseTrigger(@NotNull String jobId) {
+  public CommonReturnMsg pauseTrigger(@NotNull String triggerId) {
     try {
-      context.pauseJob(jobId);
+      context.pauseTrigger(triggerId);
     } catch (SchedulerException e) {
       return new CommonReturnMsg(ResponseEnum.FAILURE);
     }
@@ -102,7 +102,7 @@ public class QuertzServerController {
   }
 
   @PostMapping("updateTriggrtOfJob")
-  public CommonReturnMsg updateTriggrtOfJob(@NotNull String triggerID, String desc, String cron) {
+  public CommonReturnMsg updateTriggrtOfJob(@NotNull String triggerID, String desc,@NotNull String cron) {
     try {
       context.updateTriggrtOfJob(triggerID, desc, cron);
     } catch (SchedulerException e) {
@@ -123,7 +123,7 @@ public class QuertzServerController {
   }
 
 
-  @DeleteMapping("deleteJob")
+  @PostMapping("deleteJob")
   public CommonReturnMsg deleteJob(@NotNull String jobId) {
     try {
       context.deleteJob(jobId);
@@ -134,7 +134,7 @@ public class QuertzServerController {
 
   }
 
-  @DeleteMapping("deleteTrigger")
+  @PostMapping("deleteTrigger")
   public CommonReturnMsg deleteTrigger(@NotNull String triggerId) {
     try {
       context.deleteTrigger(triggerId);
@@ -160,6 +160,16 @@ public class QuertzServerController {
   public CommonReturnMsg startTrigger(@NotNull String triggerId) {
     try {
       context.startTrigger(triggerId);
+    } catch (SchedulerException e) {
+      return new CommonReturnMsg(ResponseEnum.FAILURE);
+    }
+    return new CommonReturnMsg(ResponseEnum.SUCCESS);
+  }
+
+  @PostMapping("startJob")
+  public CommonReturnMsg startJob(@NotNull String jobId){
+    try {
+      context.startJob(jobId);
     } catch (SchedulerException e) {
       return new CommonReturnMsg(ResponseEnum.FAILURE);
     }
